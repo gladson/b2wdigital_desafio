@@ -1,0 +1,29 @@
+{
+  "name": "b2wdigital_desafio",
+  "version": "1.0.0",
+  "description": "Criar um jogo com informações da franquia Star Wars",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gladson/desafio-b2w-star-wars.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "mocha",
+    "chai",
+    "validate",
+    "paginate"
+  ],
+  "author": "Gladson S Brito",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gladson/desafio-b2w-star-wars/issues"
+  },
+  "homepage": "https://github.com/gladson/desafio-b2w-star-wars#readme"
+}
