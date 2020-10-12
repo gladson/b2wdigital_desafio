@@ -51,7 +51,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/", validate.validatePostPlanet(), async (req, res) => {
+router.post("/", validate.validatePostPutPlanet(), async (req, res) => {
     try {
         const errors = validationResult(req);
 
@@ -125,6 +125,40 @@ router.patch("/:id", validate.validatePatchPlanet(), async (req, res) => {
             });
         }
         planet.ground = req.body.ground;
+        const resultChangePlanet = await planet.save();
+        res.json(resultChangePlanet);
+    } catch (error) {
+        if (process.env.DEBUG === true) {
+            res.status(500).json(`Error: ${error}`);
+        } else {
+            res.status(500).json({
+                success: false,
+                message: "Error: Desculpe ocorreu um problema",
+            });
+        }
+    }
+});
+
+router.put("/:id", validate.validatePostPutPlanet(), async (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(422).json({
+                success: false,
+                message: errors,
+            });
+        }
+
+        const planet = await Planet.findById(req.params.id);
+        if (planet === null) {
+            res.status(404).json({
+                success: false,
+                message:
+                    "Error: Desculpe não conseguimos encontrar o planeta em nossa base dados",
+            });
+        }
+        planet.set(req.body);
         const resultChangePlanet = await planet.save();
         res.json(resultChangePlanet);
     } catch (error) {
