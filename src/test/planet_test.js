@@ -104,7 +104,7 @@ describe("Star Wars - Planets", () => {
      */
     describe("GET /planets/:id", function () {
         this.timeout(8000);
-        it("GET: Buscar o planeta através do ID", (done) => {
+        it("GET: Buscar o planeta através do ID", () => {
             chai.request(baseURL)
                 .get(`/planets/${planetID}`)
                 .end((error, res) => {
@@ -117,8 +117,6 @@ describe("Star Wars - Planets", () => {
                      * Se o retorno for 200, irá retornar um conjunto de elementos no array contidos na base de dados
                      */
                     res.body.should.be.a("object");
-
-                    done();
                 });
         });
     });
@@ -129,7 +127,7 @@ describe("Star Wars - Planets", () => {
      */
     describe("GET(ERROR) /planets/:id", function () {
         this.timeout(9000);
-        it("GET(ERROR): Buscar o planeta através do ID errado", (done) => {
+        it("GET(ERROR): Buscar o planeta através do ID errado", () => {
             chai.request(baseURL)
                 .get("/planets/5f824e3db459792e0be520d5")
                 .end((error, res) => {
@@ -142,8 +140,6 @@ describe("Star Wars - Planets", () => {
                      * Se o retorno for 200, irá retornar um conjunto de elementos no array contidos na base de dados
                      */
                     res.body.should.be.a("object");
-
-                    done();
                 });
         });
     });
