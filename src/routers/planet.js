@@ -82,4 +82,27 @@ router.post("/", validate.validatePlanet(), async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const planet = await Planet.findById(req.params.id);
+    if (planet === null) {
+      res.status(404).json({
+        success: false,
+        message:
+          "Error: Desculpe não conseguimos encontrar o planeta em nossa base dados",
+      });
+    }
+    res.json(planet);
+  } catch (error) {
+    if (process.env.DEBUG === true) {
+      res.status(500).json(`Error: ${error}`);
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Error: Desculpe ocorreu um problema",
+      });
+    }
+  }
+});
+
 module.exports = router;
