@@ -205,7 +205,7 @@ describe("Star Wars - Planets", () => {
      *  Rota: /aliens/:id
      */
     describe("DELETE /planets/:id", async () => {
-        it("DELETE: Deletar o planeta do banco de dados", (done) => {
+        it("DELETE: Deletar o planeta do banco de dados", () => {
             chai.request(baseURL)
                 .delete(`/planets/${planetID}`)
                 .end((error, res) => {
@@ -215,8 +215,6 @@ describe("Star Wars - Planets", () => {
                     res.should.have.status(200);
                     res.should.be.json;
                     res.body._id = planetID;
-
-                    done();
                 });
         });
     });
