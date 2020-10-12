@@ -78,7 +78,7 @@ describe("Star Wars - Planets", () => {
      */
     describe("GET /planets?params=&params=", function () {
         this.timeout(7000);
-        it("GET: Listar os planetas com filtros(parâmetros)", (done) => {
+        it("GET: Listar os planetas com filtros(parâmetros)", () => {
             chai.request(baseURL)
                 .get(
                     "/planets?name=Gla&climate=&ground=&pageNumber=1&pageSize=5"
@@ -94,8 +94,6 @@ describe("Star Wars - Planets", () => {
                      * Se o retorno for 200, irá retornar um conjunto de elementos no array contidos na base de dados
                      */
                     res.body.should.be.a("object");
-
-                    done();
                 });
         });
     });
