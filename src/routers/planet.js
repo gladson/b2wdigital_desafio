@@ -1,5 +1,7 @@
 const express = require("express");
+const { validationResult } = require("express-validator");
 
+const validate = require("../validators/validate");
 const Planet = require("../models/planet");
 
 const router = express.Router();
@@ -37,6 +39,37 @@ router.get("/", async (req, res) => {
 
     const planets = await Planet.paginate(query, options);
     res.status(200).json(planets);
+  } catch (error) {
+    if (process.env.DEBUG === true) {
+      res.status(500).json(`Error: ${error}`);
+    } else {
+      res.status(500).json({
+        success: false,
+        message: "Error: Desculpe ocorreu um problema",
+      });
+    }
+  }
+});
+
+router.post("/", validate.validatePlanet(), async (req, res) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.status(422).json({
+        success: false,
+        message: errors,
+      });
+    }
+
+    const planet = new Planet({
+      name: req.body.name,
+      climate: req.body.climate,
+      ground: req.body.ground,
+    });
+
+    const resultPlanet = await planet.save();
+    res.json(resultPlanet);
   } catch (error) {
     if (process.env.DEBUG === true) {
       res.status(500).json(`Error: ${error}`);
