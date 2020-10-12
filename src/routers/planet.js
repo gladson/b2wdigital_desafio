@@ -3,6 +3,7 @@ const { validationResult } = require("express-validator");
 
 const validate = require("../validators/validate");
 const Planet = require("../models/planet");
+const Swapi = require("../util/swapi");
 
 const router = express.Router();
 
@@ -62,10 +63,19 @@ router.post("/", validate.validatePostPutPlanet(), async (req, res) => {
             });
         }
 
+        const resQuantMov = await Swapi.resultQuantityMovies(req.body.name);
+        let qtdMov;
+        if (resQuantMov.status == 200) {
+            qtdMov =
+                resQuantMov.data.count <= 0
+                    ? 0
+                    : resQuantMov.data.results[0].films.length;
+        }
         const planet = new Planet({
             name: req.body.name,
             climate: req.body.climate,
             ground: req.body.ground,
+            quantity_movies: qtdMov,
         });
 
         const resultPlanet = await planet.save();
@@ -158,7 +168,24 @@ router.put("/:id", validate.validatePostPutPlanet(), async (req, res) => {
                     "Error: Desculpe não conseguimos encontrar o planeta em nossa base dados",
             });
         }
-        planet.set(req.body);
+
+        const resQuantMov = await Swapi.resultQuantityMovies(req.body.name);
+        let qtdMov;
+        if (resQuantMov.status == 200) {
+            qtdMov =
+                resQuantMov.data.count <= 0
+                    ? 0
+                    : resQuantMov.data.results[0].films.length;
+        }
+
+        const planetModel = {
+            name: req.body.name,
+            climate: req.body.climate,
+            ground: req.body.ground,
+            quantity_movies: qtdMov,
+        };
+
+        planet.set(planetModel);
         const resultChangePlanet = await planet.save();
         res.json(resultChangePlanet);
     } catch (error) {
