@@ -24,21 +24,25 @@ const mongoosePaginate = require("mongoose-paginate-v2");
  */
 
 const planetSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        climate: {
+            type: String,
+            required: true,
+        },
+        ground: {
+            type: String,
+            required: true,
+        },
+        quantity_movies: {
+            type: String,
+            required: false,
+        },
     },
-    climate: {
-      type: String,
-      required: true,
-    },
-    ground: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
+    { timestamps: true }
 );
 
 planetSchema.plugin(mongoosePaginate);
