@@ -38,7 +38,7 @@ const planetSchema = new mongoose.Schema(
             required: true,
         },
         quantity_movies: {
-            type: String,
+            type: Number,
             required: false,
         },
     },
