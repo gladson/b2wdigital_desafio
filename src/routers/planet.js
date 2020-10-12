@@ -195,4 +195,26 @@ router.delete("/all", async (req, res) => {
     }
 });
 
+router.delete("/:id", async (req, res) => {
+    try {
+        const planet = await Planet.findByIdAndRemove(req.params.id);
+        if (planet != null) {
+            res.status(200).json({
+                success: true,
+                message: `Sucesso: Planeta número: ${planet._id} deletado com sucesso`,
+            });
+        }
+        res.json(planet);
+    } catch (error) {
+        if (process.env.DEBUG === true) {
+            res.status(500).json(`Error: ${error}`);
+        } else {
+            res.status(500).json({
+                success: false,
+                message: "Error: Desculpe ocorreu um problema",
+            });
+        }
+    }
+});
+
 module.exports = router;
