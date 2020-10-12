@@ -45,7 +45,7 @@ router.get("/", async (req, res) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Error: Desculpe ocorreu um problema",
+                message: "Error(GET): Desculpe ocorreu um problema",
             });
         }
     }
@@ -76,7 +76,7 @@ router.post("/", validate.validatePostPutPlanet(), async (req, res) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Error: Desculpe ocorreu um problema",
+                message: "Error(POST): Desculpe ocorreu um problema",
             });
         }
     }
@@ -99,7 +99,7 @@ router.get("/:id", async (req, res) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Error: Desculpe ocorreu um problema",
+                message: "Error(GET_ID): Desculpe ocorreu um problema",
             });
         }
     }
@@ -133,7 +133,7 @@ router.patch("/:id", validate.validatePatchPlanet(), async (req, res) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Error: Desculpe ocorreu um problema",
+                message: "Error(PATCH): Desculpe ocorreu um problema",
             });
         }
     }
@@ -167,7 +167,29 @@ router.put("/:id", validate.validatePostPutPlanet(), async (req, res) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Error: Desculpe ocorreu um problema",
+                message: "Error(PUT): Desculpe ocorreu um problema",
+            });
+        }
+    }
+});
+
+router.delete("/all", async (req, res) => {
+    try {
+        const planet = await Planet.deleteMany({});
+        if (planet.deletedCount > 0) {
+            res.status(200).json({
+                success: true,
+                message: "Sucesso: Todos os arquivos deletados com sucesso",
+            });
+        }
+        res.json(planet);
+    } catch (error) {
+        if (process.env.DEBUG === true) {
+            res.status(500).json(`Error: ${error}`);
+        } else {
+            res.status(500).json({
+                success: false,
+                message: "Error(DELETE_ALL): Desculpe ocorreu um problema",
             });
         }
     }
