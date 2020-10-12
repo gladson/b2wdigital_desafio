@@ -20,6 +20,11 @@ con.on("open", () => {
   console.log("MongoDB conectado...");
 });
 
+// ROUTE
+const apiPrefix = process.env.API_PREFIX || "/api/v1";
+
+app.use(apiPrefix + "/planets", require("./src/routers/planet"));
+
 // SERVER - PORT
 const port = process.env.PORT || 9000;
 const host = process.env.HOST || "http://localhost";
