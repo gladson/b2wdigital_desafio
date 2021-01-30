@@ -1,14 +1,10 @@
-# B2W Star Wars :D
+# Desafio - Star Wars :D
 
 ## Desafio
 
-```text
-
 Nossos associados são aficionados por Star Wars e com isso, queremos criar um jogo com algumas informações da franquia.
 
-
 Para possibilitar a equipe de front criar essa aplicação, queremos desenvolver uma API que contenha os dados dos planetas.
-
 
 Requisitos:
 
@@ -16,15 +12,10 @@ Requisitos:
 
 - Para cada planeta, os seguintes dados devem ser obtidos do banco de dados da aplicação, sendo inserido manualmente:
 
+* [Nome, Clima, Terreno]
 
-Nome
-
-Clima
-
-Terreno
-
-
-- Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars: https://swapi.dev/about
+- Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars: 
+https://swapi.dev/about
 
 
 Funcionalidades desejadas:
@@ -43,8 +34,7 @@ Funcionalidades desejadas:
 Linguagem permitida no desafio: Node.JS
 
 
-Bando de dados permitido: noSQL, preferencialmente MongoDB
-
+Bando de dados permitido: NoSQL, preferencialmente MongoDB
 
 E lembre-se!
 
@@ -53,11 +43,9 @@ E lembre-se!
 
 May the force be with you!
 
-```
-
 ### INSTALAÇÃO
 
-```
+```shell
 $ git clone git@github.com:gladson/b2wdigital_desafio.git
 
 $ cd b2wdigital_desafio
@@ -114,6 +102,7 @@ $ npm run test
 
 ```
 > Obs.: Existem dois modos de rodar o projeto.
+
 1. npm run start
 2. npm run dev
 
