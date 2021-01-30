@@ -6,9 +6,9 @@
 ### INSTALAÇÃO
 
 ```shell
-$ git clone git@github.com:gladson/b2wdigital_desafio.git
+$ git clone https://github.com/gladson/desafio_starwars.git
 
-$ cd b2wdigital_desafio
+$ cd desafio_starwars
 
 $ npm install
 
@@ -23,7 +23,7 @@ $ cp .env_example .env
 
 $ npm run dev
 
-> b2wdigital_desafio@1.0.0 dev /media/gladson/immensa/b2wdigital_desafio
+> desafio_starwars@1.0.0 dev /media/gladson/immensa/desafio_starwars
 > nodemon app.js
 
 [nodemon] 2.0.4
@@ -36,7 +36,7 @@ MongoDB conectado...
 
 $ npm run test
 
-> b2wdigital_desafio@1.0.0 test /media/gladson/immensa/b2wdigital_desafio
+> desafio_starwars@1.0.0 test /media/gladson/immensa/desafio_starwars
 > mocha --exit ./src/test/**/*test.js --require ./src/test/util/test_helper.js
 
   Star Wars - Planets
@@ -72,4 +72,4 @@ $ npm run test
 > Obs.: Outro detalhe importante a configuração url de conexão com o MongoDB também no arquivo .env, nesse projeto ja tem uma url em perfeito funcionamento pode usar a vontade.
 
 > Obs.: Comando para rodar os testes.
-1. npm run start
+1. npm run test
